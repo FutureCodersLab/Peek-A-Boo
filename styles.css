@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Work Sans";
+}
+
+#container,
+#board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    background-image: url("./images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#board {
+    width: 540px;
+    height: 540px;
+    background-image: url("./images/monsters.jpg");
+    background-size: contain;
+    background-position: center;
+    border-radius: 28px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0px 15px 30px 0px rgba(63, 42, 146, 0.08);
+}
+
+h1 {
+    margin: 0;
+}
+
+#board div {
+    width: 170px;
+    height: 170px;
+    background-image: url("./images/door.png");
+    background-size: 180px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#board div img {
+    width: 120px;
+    height: 150px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#restart {
+    background-color: white;
+    padding: 10px 18px;
+    border-radius: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+    box-shadow: 0px 15px 30px 0px rgba(63, 42, 146, 0.08);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease all;
+}
+
+#restart.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#restart:hover {
+    transform: scale(0.95);
+}
