@@ -2,87 +2,103 @@ let currentTile = { sully: null, randall: null };
 let score = 0;
 let isGameOver = false;
 
-document.addEventListener("DOMContentLoaded", setGame);
-
-function setGame() {
+document.addEventListener("DOMContentLoaded", () => {
     const board = document.getElementById("board");
+    createBoard(board);
+
+    setInterval(() => setCharacter("sully", "./images/sully.png"), 1500);
+    setInterval(() => setCharacter("randall", "./images/randall.png"), 2000);
+});
+
+const createBoard = (board) => {
     for (let i = 0; i < 9; i++) {
         const tile = document.createElement("div");
         tile.id = i.toString();
         tile.addEventListener("click", selectTile);
         board.appendChild(tile);
     }
+};
 
-    setInterval(() => setCharacter("sully", "./images/sully.png"), 1500);
-    setInterval(() => setCharacter("randall", "./images/randall.png"), 2000);
-}
+const getRandomTile = () => Math.floor(Math.random() * 9).toString();
 
-function getRandomTile() {
-    return Math.floor(Math.random() * 9).toString();
-}
-
-function setCharacter(character, imgSrc) {
+const setCharacter = (character, src) => {
     if (isGameOver) return;
 
     const prevTile = currentTile[character];
     if (prevTile) prevTile.innerHTML = "";
 
     const randomNumber = getRandomTile();
-    if (
-        currentTile.sully?.id === randomNumber ||
-        currentTile.randall?.id === randomNumber
-    )
-        return;
+    if (isTileOccupied(randomNumber)) return;
 
     const tile = document.getElementById(randomNumber);
-    const img = document.createElement("img");
-    img.src = imgSrc;
-    tile.appendChild(img);
-
+    addCharacterToTile(tile, src);
     currentTile[character] = tile;
 
-    setTimeout(() => {
-        if (currentTile[character]) currentTile[character].innerHTML = "";
-    }, Math.random() * 1000 + 500);
-}
+    setTimeout(() => clearTile(character), Math.random() * 1000 + 500);
+};
 
-function selectTile() {
-    if (isGameOver) return;
+const addCharacterToTile = (tile, src) => {
+    const img = document.createElement("img");
+    img.src = src;
+    tile.appendChild(img);
+};
 
-    const restart = document.getElementById("restart");
-    const scoreCounter = document.getElementById("score");
+const isTileOccupied = (randomNumber) =>
+    currentTile.sully?.id === randomNumber ||
+    currentTile.randall?.id === randomNumber;
+
+const clearTile = (character) => {
+    if (currentTile[character]) currentTile[character].innerHTML = "";
+};
+
+const selectTile = function () {
+    if (isGameOver || !this.innerHTML) return;
 
     if (this === currentTile.sully) {
-        score += 10;
-        scoreCounter.textContent = score.toString();
-        currentTile.sully.innerHTML = "";
+        updateScore(10);
+        clearTile("sully");
     } else if (this === currentTile.randall) {
-        isGameOver = true;
-        scoreCounter.textContent = `GAME OVER: ${score}`;
-
-        disableBoard();
-        restart.classList.add("active");
-        restart.addEventListener("click", restartGame);
+        endGame();
     }
-}
+};
 
-function disableBoard() {
+const updateScore = (points) => {
+    score += points;
+    document.getElementById("score").textContent = score.toString();
+};
+
+const endGame = () => {
+    isGameOver = true;
+    document.getElementById("score").textContent = `GAME OVER: ${score}`;
+    disableBoard();
+    showRestartButton();
+};
+
+const disableBoard = () => {
     const tiles = document.getElementById("board").children;
     for (let tile of tiles) {
         tile.removeEventListener("click", selectTile);
     }
-}
+};
 
-function restartGame() {
+const showRestartButton = () => {
+    const restart = document.getElementById("restart");
+    restart.classList.add("active");
+    restart.addEventListener("click", restartGame);
+};
+
+const restartGame = () => {
     isGameOver = false;
     score = 0;
 
-    const scoreCounter = document.getElementById("score");
-    scoreCounter.textContent = score.toString();
+    document.getElementById("score").textContent = score.toString();
+    resetBoard();
+};
 
+const resetBoard = () => {
     const tiles = document.getElementById("board").children;
     for (let tile of tiles) {
         tile.innerHTML = "";
         tile.addEventListener("click", selectTile);
     }
-}
+};
