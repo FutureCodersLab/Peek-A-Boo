@@ -71,4 +71,6 @@ const restartGame = () => {
     isGameOver = false;
     score = 0;
     document.getElementById("score").textContent = score.toString();
+    const restart = document.getElementById("restart");
+    restart.classList.remove("active");
 };
