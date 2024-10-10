@@ -24,6 +24,7 @@ body {
     background-image: url("./images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 #board {
@@ -83,4 +84,21 @@ body {
 h1,
 h2 {
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    #board {
+        width: calc(540px * 0.7);
+        height: calc(540px * 0.7);
+    }
+
+    #board div {
+        width: calc(170px * 0.7);
+        height: calc(170px * 0.7);
+    }
+
+    #board div img {
+        width: calc(120px * 0.7);
+        height: calc(150px * 0.7);
+    }
 }
