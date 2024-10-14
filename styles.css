@@ -55,4 +55,6 @@ body {
 #board img {
     width: 120px;
     height: 150px;
+    pointer-events: none;
+    user-select: none;
 }
