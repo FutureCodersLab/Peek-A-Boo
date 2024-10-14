@@ -15,41 +15,41 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => setCharacter("randall"), 2000);
 });
 
-const getRandomTile = () => Math.floor(Math.random() * 9).toString();
+const getRandomTileId = () => Math.floor(Math.random() * 9).toString();
 
 const setCharacter = (character) => {
     if (isGameOver) return;
 
     clearTile(character);
 
-    const randomTile = getRandomTile();
-    if (isTileOccupied(randomTile)) return;
-    const tile = document.getElementById(randomTile);
+    const randomTileId = getRandomTileId();
+    if (isTileOccupied(randomTileId)) return;
+    const randomTile = document.getElementById(randomTileId);
 
     const img = document.createElement("img");
     img.src = `./images/${character}.png`;
-    tile.appendChild(img);
+    randomTile.appendChild(img);
 
-    currentTile[character] = tile;
+    currentTile[character] = randomTile;
     setTimeout(() => clearTile(character), 1000);
 };
 
-const isTileOccupied = (randomTile) =>
-    currentTile.sully?.id === randomTile ||
-    currentTile.randall?.id === randomTile;
+const isTileOccupied = (randomTileId) =>
+    currentTile.sully?.id === randomTileId ||
+    currentTile.randall?.id === randomTileId;
 
 const clearTile = (character) => {
     if (currentTile[character]) currentTile[character].innerHTML = "";
 };
 
 const selectTile = (e) => {
-    const tile = e.target;
-    if (isGameOver || tile.children.length === 0) return;
+    const selectedTile = e.target;
+    if (isGameOver || selectedTile.children.length === 0) return;
 
-    if (tile === currentTile.sully) {
+    if (selectedTile === currentTile.sully) {
         updateScore(10);
         clearTile("sully");
-    } else if (tile === currentTile.randall) {
+    } else if (selectedTile === currentTile.randall) {
         isGameOver = true;
         document.getElementById("score").textContent = `GAME OVER: ${score}`;
         showRestartButton();
