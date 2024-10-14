@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const getRandomTileId = () => Math.floor(Math.random() * 9).toString();
 
 const setCharacter = (character) => {
+    clearTile(character);
     const randomTileId = getRandomTileId();
+    if (isTileOccupied(randomTileId)) return;
     const randomTile = document.getElementById(randomTileId);
     const img = document.createElement("img");
     img.src = `./images/${character}.png`;

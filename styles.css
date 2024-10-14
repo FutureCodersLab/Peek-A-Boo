@@ -27,18 +27,19 @@ body {
 }
 
 #board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     width: 540px;
     height: 540px;
     border-radius: 28px;
     border: 2px solid var(--white);
     box-shadow: var(--box-shadow);
     background-image: url("/images/monsters.jpg");
-    background-size: contain;
-    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 #board div {
@@ -53,5 +54,5 @@ body {
 
 #board img {
     width: 120px;
-    height: 120px;
+    height: 150px;
 }
