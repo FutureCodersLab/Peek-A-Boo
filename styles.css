@@ -5,3 +5,53 @@
     --white: rgba(255, 255, 255, 0.8);
     --font-family: "Work Sans";
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("./images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#board {
+    width: 540px;
+    height: 540px;
+    border-radius: 28px;
+    border: 2px solid var(--white);
+    box-shadow: var(--box-shadow);
+    background-image: url("/images/monsters.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#board div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 170px;
+    height: 170px;
+    background-image: url("./images/door.png");
+    background-size: cover;
+}
+
+#board img {
+    width: 120px;
+    height: 120px;
+}
