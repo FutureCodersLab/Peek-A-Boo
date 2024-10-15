@@ -47,17 +47,18 @@ const selectTile = (e) => {
     if (isGameOver || selectedTile.children.length === 0) return;
 
     if (selectedTile === currentTile.sully) {
-        updateScore(10);
-        clearTile("sully");
-    } else if (selectedTile === currentTile.randall) {
+        updateScore();
+        clearTile();
+    }
+    if (selectedTile === currentTile.randall) {
         isGameOver = true;
         document.getElementById("score").textContent = `GAME OVER: ${score}`;
         showRestartButton();
     }
 };
 
-const updateScore = (points) => {
-    score += points;
+const updateScore = () => {
+    score += 10;
     document.getElementById("score").textContent = score.toString();
 };
 
@@ -71,6 +72,5 @@ const restartGame = () => {
     isGameOver = false;
     score = 0;
     document.getElementById("score").textContent = score.toString();
-    const restart = document.getElementById("restart");
-    restart.classList.remove("active");
+    document.getElementById("restart").classList.remove("active");
 };
