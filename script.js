@@ -1,37 +1,37 @@
-let currentTile = { sully: null, randall: null };
+let currentDoor = { sully: null, randall: null };
 
 document.addEventListener("DOMContentLoaded", () => {
     const board = document.getElementById("board");
     for (let i = 0; i < 9; i++) {
-        const tile = document.createElement("div");
-        tile.id = i.toString();
-        board.appendChild(tile);
+        const door = document.createElement("div");
+        door.id = i.toString();
+        board.appendChild(door);
     }
 
     setInterval(() => setCharacter("sully"), 1500);
     setInterval(() => setCharacter("randall"), 2000);
 });
 
-const getRandomTileId = () => Math.floor(Math.random() * 9).toString();
+const getRandomDoorId = () => Math.floor(Math.random() * 9).toString();
 
 const setCharacter = (character) => {
-    clearTile(character);
-    const randomTileId = getRandomTileId();
-    if (isTileOccupied(randomTileId)) return;
-    const randomTile = document.getElementById(randomTileId);
+    clearDoor(character);
+    const randomDoorId = getRandomDoorId();
+    if (isDoorOccupied(randomDoorId)) return;
+    const randomDoor = document.getElementById(randomDoorId);
     const img = document.createElement("img");
     img.src = `./images/${character}.png`;
-    randomTile.appendChild(img);
+    randomDoor.appendChild(img);
 
-    currentTile[character] = randomTile;
+    currentDoor[character] = randomDoor;
 
-    setTimeout(() => clearTile(character), 1000);
+    setTimeout(() => clearDoor(character), 1000);
 };
 
-const isTileOccupied = (randomTileId) =>
-    currentTile.sully?.id === randomTileId ||
-    currentTile.randall?.id === randomTileId;
+const isDoorOccupied = (randomDoorId) =>
+    currentDoor.sully?.id === randomDoorId ||
+    currentDoor.randall?.id === randomDoorId;
 
-const clearTile = (character) => {
-    if (currentTile[character]) currentTile[character].innerHTML = "";
+const clearDoor = (character) => {
+    if (currentDoor[character]) currentDoor[character].innerHTML = "";
 };
