@@ -11,6 +11,30 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: var(--font-family);
+    /* cursor: url("./images/batarang1.png") 16 16, auto; */
+    cursor: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#custom-cursor {
+    position: absolute;
+    width: 50px; /* Adjust to match your Batarang image size */
+    height: 50px;
+    background: url("./images/batarang.png") no-repeat center center;
+    background-size: contain;
+    pointer-events: none; /* Ensure it doesn't block interactions */
+    transform-origin: center;
+}
+
+#custom-cursor.spinning {
+    animation: spin 0.7s linear infinite;
 }
 
 #container {
@@ -33,12 +57,12 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    width: 540px;
-    height: 540px;
+    width: 460px;
+    height: 460px;
     border-radius: 28px;
-    border: 2px solid var(--white);
+    border: 2px solid black;
     box-shadow: var(--box-shadow);
-    background-image: url("./images/monsters.jpg");
+    background-image: url("./images/grey.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -47,15 +71,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: 170px;
-    height: 170px;
+    width: 145px;
+    height: 145px;
     background-image: url("./images/door.png");
     background-size: cover;
 }
 
 #board div img {
-    width: 120px;
-    height: 150px;
+    width: 100px;
+    height: 128px;
     pointer-events: none;
     user-select: none;
 }
@@ -64,9 +88,9 @@ body {
     padding: 10px 18px;
     border-radius: 15px;
     border: 1px solid black;
-    cursor: pointer;
     box-shadow: var(--box-shadow);
-    background-color: white;
+    background-color: #39464c;
+    color: antiquewhite;
     transition: 0.5s ease all;
     opacity: 0;
     pointer-events: none;
@@ -83,22 +107,6 @@ body {
 
 h1,
 h2 {
+    color: antiquewhite;
     margin: 0;
-}
-
-@media (max-width: 768px) {
-    #board {
-        width: calc(540px * 0.7);
-        height: calc(540px * 0.7);
-    }
-
-    #board div {
-        width: calc(170px * 0.7);
-        height: calc(170px * 0.7);
-    }
-
-    #board div img {
-        width: calc(120px * 0.7);
-        height: calc(150px * 0.7);
-    }
 }
