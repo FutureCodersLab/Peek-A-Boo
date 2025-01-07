@@ -2,7 +2,7 @@
 
 :root {
     --box-shadow: 0px 15px 30px 0px rgba(63, 42, 146, 0.08);
-    --white: rgba(255, 255, 255, 0.8);
+    --grey: #39464c;
     --font-family: "Work Sans";
 }
 
@@ -11,19 +11,27 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-family);
+    cursor: url("./images/batarang.png") 16 16, auto;
 }
 
 #container {
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    height: 100vh;
-    width: 100vw;
     background-image: url("./images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+h1,
+h2 {
+    color: antiquewhite;
+    margin: 0;
 }
 
 #board {
@@ -32,12 +40,12 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    width: 540px;
-    height: 540px;
+    width: 460px;
+    height: 460px;
     border-radius: 28px;
-    border: 2px solid var(--white);
+    border: 2px solid black;
     box-shadow: var(--box-shadow);
-    background-image: url("/images/monsters.jpg");
+    background-image: url("./images/grey.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -46,14 +54,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: 170px;
-    height: 170px;
+    width: 145px;
+    height: 145px;
     background-image: url("./images/door.png");
     background-size: cover;
 }
 
 #board img {
-    width: 120px;
-    height: 150px;
+    width: 100px;
+    height: 128px;
     pointer-events: none;
+    user-select: none;
 }

@@ -1,4 +1,4 @@
-let currentDoor = { sully: null, randall: null };
+let currentDoor = { villain: null, hero: null };
 
 document.addEventListener("DOMContentLoaded", () => {
     const board = document.getElementById("board");
@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         board.appendChild(door);
     }
 
-    setInterval(() => setCharacter("sully"), 1500);
-    setInterval(() => setCharacter("randall"), 2000);
+    setInterval(() => setCharacter("villain"), 1500);
+    setInterval(() => setCharacter("hero"), 2000);
 });
 
 const getRandomDoorId = () => Math.floor(Math.random() * 9).toString();
@@ -29,9 +29,11 @@ const setCharacter = (character) => {
 };
 
 const isDoorOccupied = (randomDoorId) =>
-    currentDoor.sully?.id === randomDoorId ||
-    currentDoor.randall?.id === randomDoorId;
+    currentDoor.villain?.id === randomDoorId ||
+    currentDoor.hero?.id === randomDoorId;
 
 const clearDoor = (character) => {
-    if (currentDoor[character]) currentDoor[character].innerHTML = "";
+    if (currentDoor[character]) {
+        currentDoor[character].innerHTML = "";
+    }
 };
