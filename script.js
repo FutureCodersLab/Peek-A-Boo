@@ -1,4 +1,4 @@
-let currentDoor = { villain: null, hero: null };
+let currentDoor = { joker: null, batman: null };
 let score = 0;
 let isGameOver = false;
 
@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     spinCursor(true);
-    setInterval(() => setCharacter("villain"), 1500);
-    setInterval(() => setCharacter("hero"), 2000);
+    setInterval(() => setCharacter("joker"), 1500);
+    setInterval(() => setCharacter("batman"), 2000);
 });
 
 const getRandomDoorId = () => Math.floor(Math.random() * 9).toString();
@@ -46,8 +46,8 @@ const setCharacter = (character) => {
 };
 
 const isDoorOccupied = (randomDoorId) =>
-    currentDoor.villain?.id === randomDoorId ||
-    currentDoor.hero?.id === randomDoorId;
+    currentDoor.joker?.id === randomDoorId ||
+    currentDoor.batman?.id === randomDoorId;
 
 const clearDoor = (character) => {
     if (currentDoor[character]) currentDoor[character].innerHTML = "";
@@ -57,11 +57,11 @@ const selectDoor = (e) => {
     const selectedDoor = e.target;
     if (isGameOver || selectedDoor.children.length === 0) return;
 
-    if (selectedDoor === currentDoor.villain) {
+    if (selectedDoor === currentDoor.joker) {
         updateScore();
         clearDoor();
     }
-    if (selectedDoor === currentDoor.hero) {
+    if (selectedDoor === currentDoor.batman) {
         isGameOver = true;
         spinCursor(false);
         document.getElementById("score").textContent = `GAME OVER: ${score}`;
