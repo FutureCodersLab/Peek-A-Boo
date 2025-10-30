@@ -1,4 +1,4 @@
-let currentDoor = { villain: null, hero: null };
+let currentDoor = { joker: null, batman: null };
 
 document.addEventListener("DOMContentLoaded", () => {
     const board = document.getElementById("board");
@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         board.appendChild(door);
     }
 
-    setInterval(() => setCharacter("villain"), 1500);
-    setInterval(() => setCharacter("hero"), 2000);
+    setInterval(() => setCharacter("joker"), 1500);
+    setInterval(() => setCharacter("batman"), 2000);
 });
 
 const getRandomDoorId = () => Math.floor(Math.random() * 9).toString();
@@ -29,8 +29,8 @@ const setCharacter = (character) => {
 };
 
 const isDoorOccupied = (randomDoorId) =>
-    currentDoor.villain?.id === randomDoorId ||
-    currentDoor.hero?.id === randomDoorId;
+    currentDoor.joker?.id === randomDoorId ||
+    currentDoor.batman?.id === randomDoorId;
 
 const clearDoor = (character) => {
     if (currentDoor[character]) {
